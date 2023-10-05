@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Spinner from '../components/Spinner'
 import BackButton from '../components/BackButton'
 import axios from 'axios'
+import { useSnackbar } from 'notistack'
 
 const CreateBook = () => {
     const [formData, setFormData] = useState({
@@ -13,6 +14,8 @@ const CreateBook = () => {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleChange = (e) => {
         // console.log(e);
@@ -30,10 +33,12 @@ const CreateBook = () => {
             .post(`http://localhost:5555/books`, formData)
             .then(() => {
                 setLoading(false);
+                enqueueSnackbar("Book created Successfully", { variant: 'success' })
                 navigate('/')
             })
             .catch((error) => {
                 setLoading(false);
+                enqueueSnackbar("Error", { variable: 'error' })
                 console.log(error);
             })
     }

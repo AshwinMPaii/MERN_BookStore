@@ -22,7 +22,7 @@ const ShowBook = () => {
                 console.log(error);
                 setLoading(false)
             })
-    }, [])
+    }, [id])
     return (
         <div className="flex flex-col p-4 bg-black text-white w-screen h-screen">
             {/* <div className="flex w-full justify-center"> */}
